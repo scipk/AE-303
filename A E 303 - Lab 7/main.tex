@@ -1,0 +1,239 @@
+\documentclass[conf]{new-aiaa}
+
+% Package Imports
+\usepackage{csvsimple}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage{siunitx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage[version=4]{mhchem}
+\usepackage{siunitx}
+\usepackage{longtable,tabularx}
+\setlength\LTleft{0pt} 
+
+% Title & Author
+\title{Lab 7 - Supersonic flow visualization using Schlieren imaging}
+\author{Parham Khodadi\footnote{Aerospace Engineering student, San Diego State University}}
+\affil{A E 303, Section 3, with Dr. Xiaofeng Liu}
+
+\begin{document}
+
+\maketitle
+
+\section{Objective}
+\label{sec:objective}
+
+The objective of this experiment was to visualize and analyze supersonic flow features over a cone using Schlieren imaging techniques. The goals included: (1) familiarizing with the setup and function of the Schlieren system; (2) understanding the operating procedure of a blowdown-type supersonic wind tunnel; (3) identifying oblique shock waves and expansion waves formed around a cone in Mach 2.0 flow; and (4) experimentally determining the shockwave angle and comparing it with the theoretical prediction using tools such as the NACA 1135 charts~\cite{naca1135}, Anderson's aerodynamic theory~\cite{anderson}, and the Devenport calculator~\cite{vtcalculator}.
+
+\section{Nomenclature}
+{\renewcommand\arraystretch{1.0}
+\noindent\begin{longtable*}{@{}l @{\quad=\quad} l@{}}
+\( \alpha \) & Cone half-angle (deg) \\
+\( \beta \) & Shock wave angle (deg) \\
+\( M \) & Mach number (–) \\
+\( P_0 \) & Total (stagnation) pressure (Pa) \\
+\( P \) & Static pressure (Pa) \\
+\( T_0 \) & Total (stagnation) temperature (K) \\
+\( T \) & Static temperature (K) \\
+\( \gamma \) & Ratio of specific heats for air (–) \\
+\( A_{t,1} \) & Throat area before shock (m\(^2\)) \\
+\( A_{t,2} \) & Throat area after shock (m\(^2\)) \\
+\( p_{0,1} \) & Total pressure before shock (Pa) \\
+\( p_{0,2} \) & Total pressure after shock (Pa) \\
+\end{longtable*}}
+
+\section{Theory}
+\label{sec:theory}
+
+When a supersonic flow encounters a pointed object such as a cone, oblique shock waves form to accommodate the turning of the flow, which cannot occur isentropically at these speeds. These shock waves cause abrupt, nearly discontinuous increases in pressure, density, and temperature while reducing the Mach number downstream of the shock. In contrast, expansion waves—which occur when the flow turns away from itself—result in continuous decreases in pressure and increases in Mach number.
+
+The shock wave angle $\beta$ is governed by the cone half-angle $\theta$ and the free-stream Mach number $M_\infty$. Analytical solutions are often obtained through numerical integration of the Taylor–Maccoll equation, but practical estimation can be done using tools such as the oblique shock calculator from Devenport~\cite{vtcalculator} or the graphical data in NACA Report 1135~\cite{naca1135}. For a cone with $\theta = 15^\circ$ in a Mach 2.0 flow, the expected shock angle is approximately $\beta \approx 33.9^\circ$~\cite{anderson}.
+
+In this experiment, Schlieren imaging was used to visualize these compressible flow phenomena. Schlieren is a density-based optical technique that detects changes in the refractive index of a gas flow, which are proportional to density gradients. These gradients deflect light rays slightly, and when a knife edge is strategically placed at the focal point of the imaging optics, this angular deviation is transformed into intensity variation on a screen~\cite{jove_schlieren}. This makes otherwise invisible structures like shock waves and expansion fans clearly observable.
+
+Figure~\ref{fig:schlieren_convex} shows a classical Schlieren system using convex lenses. Parallel rays originating from a point light source pass through the test section and are focused onto a knife edge placed at the focal plane. Light rays that experience different refractions due to density gradients are partially blocked by the knife edge, creating bright and dark regions on the screen.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{instructionsfig1.jpeg}
+    \caption{Conventional Schlieren setup using convex lenses. Density gradients deflect light rays, which are partially blocked by the knife edge (K) to generate image contrast. Adapted from lab instructions.}
+    \label{fig:schlieren_convex}
+\end{figure}
+
+The actual setup used in this experiment (Figure~\ref{fig:schlieren_concave}) employed a Z-type configuration with concave mirrors ($M_1$, $M_2$), instead of convex lenses. This setup provides a more compact and robust design. The core principle remains the same: deflected light rays are intercepted by the knife edge, and image contrast reveals flow features such as oblique shocks and expansion waves~\cite{jove_schlieren}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{instructionsfig2.jpeg}
+    \caption{Z-type Schlieren setup used in this experiment with concave mirrors. Adapted from lab instructions.}
+    \label{fig:schlieren_concave}
+\end{figure}
+
+The static temperature $T$ in the flow can be estimated from the total (stagnation) temperature $T_0$ using the isentropic relation:
+\begin{equation}
+T = \frac{T_0}{1 + \frac{\gamma - 1}{2} M^2}
+\end{equation}
+where $\gamma = 1.4$ for air and $M$ is the local Mach number. Assuming $T_0 = 293.15\,\text{K}$ (20°C) and $M = 2.0$, this yields a static temperature of approximately $T \approx 163\,\text{K}$~\cite{gasdynamics}.
+
+\section{Experimental Setup}
+\label{sec:setup}
+
+The experiment was conducted using the SDSU Supersonic Wind Tunnel, a blowdown-type facility with an operational Mach number range of 1.0 to 4.5. The tunnel uses pressurized air stored in large receiver tanks and regulated through a high-speed valve to produce a short-duration, steady supersonic flow through a test section with internal dimensions of $6" \times 6" \times 10"$. A schematic of the tunnel layout is shown in Figure~\ref{fig:tunnel_schematic}.
+
+The primary model tested was a cone with a nose half-angle of $15^\circ$, mounted in the center of the test section using a streamlined sting support. A detailed drawing of the model is provided in Appendix~\ref{app:cone}. The airflow around the cone at Mach 2.0 generates a conical shock wave at the leading edge and an expansion fan near the trailing surface.
+
+Flow visualization was achieved using a Schlieren imaging system, arranged in a Z-type configuration using a pair of concave mirrors. The setup includes a high-intensity light source, mirrors, a knife-edge positioned at the second mirror’s focal plane, and a projection screen and camera to capture the deflected light intensity gradients. A photo of the Schlieren imaging system is shown in Figure~\ref{fig:schlieren_apparatus}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{IMG_0315.jpg}
+    \caption{Schematic of the SDSU Supersonic Wind Tunnel facility.}
+    \label{fig:tunnel_schematic}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth, angle=-90]{IMG_0312.jpg}
+    \caption{Schlieren imaging apparatus setup on the SDSU supersonic wind tunnel.}
+    \label{fig:schlieren_apparatus}
+\end{figure}
+
+
+\section{Experimental Procedure}
+\label{sec:procedure}
+
+The experiment was performed in the SDSU Supersonic Wind Tunnel using a 15-degree half-angle cone and a Schlieren optical system. The wind tunnel was operated as a blowdown facility at Mach 2.0. The procedure followed three stages: air preparation, Schlieren system alignment, and test execution.
+
+\textbf{Air Preparation:}
+\begin{enumerate}
+  \item Activated dryer towers to remove moisture, preventing condensation or ice due to low static temperatures.
+  \item Confirmed the test section was clear, then mounted the cone model and sealed the section.
+  \item Pressurized the air receiver tanks to 210 psi using a reciprocating compressor.
+  \item Initialized the EC-321 controller and set the required parameters for Mach 2 operation.
+\end{enumerate}
+
+\textbf{Schlieren System Setup:}
+\begin{enumerate}
+  \item Powered on the light source and cooling fan.
+  \item Aligned the first concave mirror to direct light through the test section.
+  \item Adjusted the second mirror to reflect light onto the projection screen.
+  \item Fine-tuned the knife edge position at the second mirror’s focal point to enhance image contrast.
+\end{enumerate}
+
+\textbf{Wind Tunnel Operation:}
+\begin{enumerate}
+  \item Opened the air supply to the fast-valve controller and initiated airflow by opening the main valve.
+  \item Activated the wind tunnel and observed the Schlieren visualization during the brief supersonic run.
+  \item Captured images of the flow field for later analysis, including shock wave and expansion fan regions.
+\end{enumerate}
+
+
+\section{Results and Analysis}
+\label{sec:results}
+
+The Schlieren imaging results captured in this experiment clearly show the presence of a conical shock wave at the leading edge of the cone and expansion fans originating from the trailing surface, as visualized in Figure~\ref{fig:schlieren_result}. The flow was established at Mach 2.0 over a cone with a 15° half-angle.
+
+Using the overlaid lines in the provided Schlieren image, the measured shock wave angle $\beta$ was found to be $33.6^\circ$. Theoretical prediction for the shock angle, calculated using the Devenport oblique shock calculator~\cite{vtcalculator} and cross-referenced with NACA Report 1135 Chart 5~\cite{naca1135}, yields a value of $\beta_{\text{theory}} \approx 33.9^\circ$ for a cone with a 15° half-angle at Mach 2.0. The percent error between the experimental and theoretical angle is less than 1\%, validating the accuracy of the flow visualization method.
+
+To estimate the local static temperature $T$ in the test section, the isentropic relation for compressible flows was applied:
+\begin{equation}
+T = \frac{T_0}{1 + \frac{\gamma - 1}{2} M^2}
+\end{equation}
+Assuming a total temperature of $T_0 = 293.15\,\text{K}$, a Mach number of $M = 2.0$, and a heat capacity ratio of $\gamma = 1.4$, the resulting static temperature is:
+\[
+T = \frac{293.15}{1 + 0.2 \cdot 4} = \frac{293.15}{1.8} \approx 162.9\,\text{K}
+\]
+This confirms that condensation or freezing is a possibility in the test section, justifying the use of air dryers.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{schlieren_result.jpg}
+    \caption{Schlieren image of Mach 2.0 flow over a 15° half-angle cone. A) Raw image. B) Annotated image with shock wave (red) and expansion fans (yellow) labeled. Experimental shock angle measured as $33.6^\circ$.}
+    \label{fig:schlieren_result}
+\end{figure}
+
+\section{Discussion}
+\label{sec:discussion}
+
+\begin{enumerate}[label=\textbf{\alph*)}]
+    \item \textbf{Why does the air need to be dehydrated before it is pumped into the air storage tank?} \\
+    Moisture in the air can condense or freeze during tunnel operation due to the sharp temperature drop associated with supersonic expansion. For Mach 2.0 flow, the static temperature in the test section drops to approximately 163 K. Frozen water droplets or condensation could damage internal surfaces, obstruct flow visualization, or distort the Schlieren image. To prevent this, the air is passed through dryer towers prior to compression and storage.
+
+    \item \textbf{Which device in the tunnel facility is responsible for maintaining a constant air pressure in the settling chamber?} \\
+    The \textbf{EC-321 process loop controller}, working in conjunction with the \textbf{pneumatically powered, electronically controlled valve}, maintains steady pressure in the settling chamber during blowdown. It adjusts valve position dynamically to ensure consistent flow conditions.
+
+\item \textbf{What pressure must the settling chamber be maintained at to achieve Mach 2.0, assuming ambient exit pressure?} \\[4pt]
+To establish supersonic flow at Mach 2.0 in the test section, the required stagnation-to-static pressure ratio can be derived from isentropic compressible flow theory:
+\[
+\frac{P_0}{P} = \left(1 + \frac{\gamma - 1}{2} M^2 \right)^{\frac{\gamma}{\gamma - 1}} = \left(1 + 0.2 \cdot 4 \right)^{3.5} = 1.8^{3.5} \approx 7.82
+\]
+Assuming the back pressure is equal to the ambient pressure \(P = 1\,\text{atm}\), the required stagnation pressure in the settling chamber is:
+\[
+P_0 = 7.82 \times 1\,\text{atm} = 7.82\,\text{atm} \approx 792\,\text{kPa}
+\]
+
+This pressure ensures that the converging-diverging nozzle can accelerate the flow to Mach 2.0 before discharging into ambient conditions. The conceptual basis of this relationship is illustrated in Figure~\ref{fig:anderson10_19}, which shows a nozzle exhausting into a constant-area duct with a normal shock standing at the exit.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{AndersonFig10_19.png}
+    \caption{Figure 10.19 from Anderson~\cite{anderson}: Nozzle exhausting into a constant-area duct, showing the required pressure relationship across a shock at the nozzle exit.}
+    \label{fig:anderson10_19}
+\end{figure}
+
+
+    \item \textbf{Why must the second throat area be greater than the first in a supersonic wind tunnel? What happens if it is not?} \\
+    According to Equation (10.39) from Anderson~\cite{anderson},
+    \[
+    \frac{A_{t,2}}{A_{t,1}} = \frac{p_{0,1}}{p_{0,2}}
+    \]
+    where \( p_{0,1} \) and \( p_{0,2} \) are the total pressures before and after a normal shock. Since total pressure decreases across a shock (\( p_{0,2} < p_{0,1} \)), it follows that:
+    \[
+    A_{t,2} > A_{t,1}
+    \]
+    This means the second throat (e.g., in the diffuser section) must be larger to accommodate the decelerated, lower total pressure flow. If this condition isn't met, the flow will choke or cause unsteady shock behavior, preventing stable supersonic operation. Figure 10.19 illustrates this in the context of a normal shock occurring at the nozzle exit, highlighting the need for expansion area downstream.
+
+    \item \textbf{What is the purpose of the knife edge in the Schlieren system? Where is it located?} \\
+    The knife edge is used to enhance contrast by blocking part of the light rays that are deflected due to refractive index gradients, which correspond to density changes in the flow. It is positioned precisely at the focal plane of the second mirror (or lens), where converging rays meet. Without it, Schlieren images would lack the necessary contrast to reveal shock and expansion structures~\cite{jove_schlieren}.
+\end{enumerate}
+
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+This experiment successfully demonstrated the use of Schlieren imaging to visualize supersonic flow features, including shock waves and expansion fans, over a cone in Mach 2.0 conditions. The measured shock wave angle of $33.6^\circ$ was within 1\% of the theoretical prediction of $33.9^\circ$, validating both the Schlieren technique and the experimental setup.
+
+The objectives of the experiment were met: the flow field around a supersonic cone was clearly visualized, the imaging system was properly configured and used, and the results aligned closely with predictions based on compressible flow theory and tools such as the NACA 1135 charts and the Devenport calculator.
+
+Minor sources of error could include misalignment of optical elements or fluctuations in ambient pressure. Future runs could benefit from automated image analysis tools for more precise angle measurements or the use of high-speed video capture to study transient behavior. Overall, the experiment deepened understanding of shock structures in supersonic flow and validated the use of optical methods in aerodynamics testing.
+
+
+\section*{Acknowledgments}
+The author would like to thank Dr. Xiaofeng Liu for his guidance and Teacher's Assistant Andrew Balolong for assistance during the experiment.
+
+\bibliography{references}
+\bibliographystyle{new-aiaa}
+
+\section{Appendix}
+\appendix
+\section{Cone Drawing}
+\label{app:cone}
+
+The cone model used in this experiment is shown in Figure~\ref{fig:cone_drawing}. It has a nose half-angle of $15^\circ$ and is designed for axisymmetric flow analysis under supersonic conditions.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{Cone01_AE303.jpg}
+    \caption{Technical drawing of the 15-degree half-angle cone used in the experiment.}
+    \label{fig:cone_drawing}
+\end{figure}
+
+\end{document}

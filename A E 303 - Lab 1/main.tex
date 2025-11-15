@@ -1,0 +1,379 @@
+\documentclass[conf]{new-aiaa}
+%\documentclass[journal]{new-aiaa} for journal papers
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage[version=4]{mhchem}
+\usepackage{siunitx}
+\usepackage{longtable,tabularx}
+\setlength\LTleft{0pt} 
+
+\title{A E 303 - Lab 1}
+
+\author{Parham Khodadi\footnote{Aerospace Engineering student, San Diego State University}}
+\affil{A E 303, Section 3, with Dr. Xiaofeng Liu}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This lab measured atmospheric pressure and room temperature, applied corrections, and analyzed uncertainties. Statistical methods were used to compute mean, standard deviation, and uncertainty. Results were presented in tables and a convergence test.
+\end{abstract}
+
+\section{Nomenclature}
+
+{\renewcommand\arraystretch{1.0}
+\noindent\begin{longtable*}{@{}l @{\quad=\quad} l@{}}
+$T$ & Temperature (°F or K) \\
+$P$ & Atmospheric Pressure (inHg, mmHg, or Pa) \\
+$\rho$ & Air Density (kg/m$^3$) \\
+$g_0$ & Standard Gravitational Acceleration (9.80665 m/s$^2$) \\
+$R_{air}$ & Specific Gas Constant for Air (287.058 J/kg/K) \\
+$S_x$ & Sample Standard Deviation \\
+$S_{\bar{x}}$ & Standard Deviation of the Mean \\
+\end{longtable*}}
+
+\section{Introduction}
+\lettrine{T}{his} lab involved measuring atmospheric pressure and room temperature using a barometer and thermometer. Corrections for latitude and temperature were applied, and statistical analysis was performed to calculate mean, standard deviation, and uncertainties.
+
+\section{Objectives}
+
+This lab aims to achieve the following objectives:
+
+\begin{enumerate}
+    \item Learn how to correctly measure the room ambient pressure (i.e., the atmospheric pressure) and the room temperature using a barometer and a thermometer, respectively.
+    \item Learn how to apply the latitude and temperature corrections to the atmospheric pressure measurement, respectively. 
+    \item Learn how to calculate the sample mean ($\bar{x}$), the sample standard deviation ($S_x$), and sample standard deviation of the means ($S_{\bar{x}}$), respectively, using the atmospheric pressure and room temperature as examples.
+    \item Learn how to characterize the one-time sample uncertainty and the mean value uncertainty for the measured atmospheric pressure and the room temperature, respectively. 
+    \item Learn how to characterize the one-time sample uncertainty and the mean value uncertainty for derived variables, using the room air density as an example. 
+    \item Learn how to determine the significant digit of the measured quantities by estimating the measurement resolution of the derived variables, using the room air density as an example.
+    \item Learn how to conduct the “convergence test” for the measured statistical quantities, e.g., the mean value and the standard deviation, etc. 
+\end{enumerate}
+
+\section{Theory}
+
+This experiment involved measuring atmospheric pressure and room temperature using a barometer and a thermometer. Since barometers are typically calibrated under standard conditions, we had to adjust for gravitational acceleration and temperature to get more accurate pressure readings.
+
+\subsection{Gravity and Temperature Corrections}
+Barometric pressure readings vary based on location due to differences in gravity. The standard gravitational acceleration is $g_0 = 9.80665 \text{ m/s}^2$, but it changes with latitude. A correction factor from a reference table was used to account for this. Temperature also affects the barometer since mercury expands and contracts with heat. We applied a temperature correction factor to adjust for this.
+
+\subsection{Statistical Analysis}
+After applying the corrections, we analyzed the pressure and temperature data using basic statistical methods. The sample mean $\bar{x}$ represents the average of our measurements:
+\begin{equation}
+    \bar{x} = \frac{1}{N} \sum_{i=1}^{N} x_i
+\end{equation}
+where $N$ is the number of measurements and $x_i$ represents each individual reading.
+
+The sample standard deviation $S_x$ tells us how much the data varies:
+\begin{equation}
+    S_x = \sqrt{\frac{1}{N-1} \sum_{i=1}^{N} (x_i - \bar{x})^2}
+\end{equation}
+A useful metric is the standard deviation of the mean, $S_{\bar{x}}$, which shows how much uncertainty is in our average value:
+\begin{equation}
+    S_{\bar{x}} = \frac{S_x}{\sqrt{N}}
+\end{equation}
+
+\subsection{Uncertainty Analysis}
+Measurement uncertainty comes from instrument limitations and environmental factors. We estimated uncertainty for a single measurement using a confidence interval:
+\begin{equation}
+    x \pm t_{\nu,p} S_x
+\end{equation}
+where $t_{\nu,p}$ is a statistical factor from the t-distribution.
+
+For derived values like air density, uncertainty carries over from pressure and temperature uncertainties. The uncertainty in air density $\rho$ was estimated using error propagation:
+\begin{equation}
+    \delta \rho = \sqrt{ \left( \frac{\partial \rho}{\partial P} \delta P \right)^2 + \left( \frac{\partial \rho}{\partial T} \delta T \right)^2 }
+\end{equation}
+where $\delta P$ and $\delta T$ are the uncertainties in pressure and temperature.
+
+\subsection{Convergence Test}
+To check if our data was reliable, we performed a convergence test. This meant plotting the sample mean, standard deviation, and standard deviation of the mean as more data was added. If these values stabilized as $N$ increased, it confirmed that our dataset was statistically sound.
+
+By applying these corrections and analyses, we improved measurement accuracy and learned more about how to quantify uncertainty in atmospheric pressure readings.
+
+
+\section{Materials and Equipment}
+
+\subsection{Barometer}
+A mercury barometer was used to measure atmospheric pressure. This instrument provides readings in inches of mercury (inHg) and millimeters of mercury (mmHg). The recorded values required corrections to account for local gravitational acceleration and temperature variations.
+
+\subsection{Thermometer}
+A standard room thermometer was used to measure ambient temperature in degrees Fahrenheit (°F). This measurement was essential for applying temperature corrections to the barometric pressure reading.
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,angle=-90]{barometer.jpg}
+        \caption{Barometer used for measuring atmospheric pressure.}
+        \label{fig:barometer}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth,angle=-90]{thermometer.jpg}
+        \caption{Thermometer used for measuring room temperature.}
+        \label{fig:thermometer}
+    \end{minipage}
+\end{figure}
+
+
+\subsection{Experimental Setup}
+The barometer and thermometer were placed in a controlled indoor environment to minimize environmental fluctuations. Data was recorded manually by each student in the class, forming a dataset for statistical analysis.
+
+\section{Procedure}
+
+The experiment involved measuring atmospheric pressure and room temperature, applying necessary corrections, and performing statistical analysis. The steps followed are outlined below.
+
+\subsection{Data Collection}
+\begin{enumerate}
+    \item A mercury barometer and a standard room thermometer were placed in a controlled environment to minimize fluctuations in pressure and temperature.
+    \item Each student in the class recorded three values:
+    \begin{itemize}
+        \item Barometer reading in inches of mercury (\textit{inHg}).
+        \item Barometer reading in millimeters of mercury (\textit{mmHg}).
+        \item Thermometer reading in degrees Fahrenheit (\textit{°F}).
+    \end{itemize}
+    \item The recorded data were compiled into a shared dataset for further analysis.
+\end{enumerate}
+
+\subsection{Applying Corrections}
+\begin{enumerate}
+    \item The raw atmospheric pressure readings were adjusted for local gravitational acceleration using a gravity correction table.
+    \item A temperature correction table was used to account for thermal expansion effects on the barometer.
+    \item The corrected pressure values were converted to Pascals (\textit{Pa}) for consistency in calculations.
+\end{enumerate}
+
+\subsection{Statistical Analysis}
+\begin{enumerate}
+    \item The sample mean ($\bar{x}$), sample standard deviation ($S_x$), and standard deviation of the mean ($S_{\bar{x}}$) were calculated for both atmospheric pressure and room temperature.
+    \item The uncertainty of a single measurement and the uncertainty of the ensemble average were determined using statistical confidence intervals.
+    \item The uncertainty in air density, a derived variable, was computed using error propagation principles.
+\end{enumerate}
+
+\subsection{Convergence Test}
+\begin{enumerate}
+    \item The convergence of the sample mean, standard deviation, and standard deviation of the mean was analyzed by progressively increasing the sample size.
+    \item A plot was generated to visualize whether these statistical values stabilized with additional data points.
+\end{enumerate}
+
+By following these steps, the experiment ensured accurate measurements and provided a foundation for uncertainty analysis and statistical evaluation.
+
+\section{Data Reduction}
+
+The barometric pressure readings were corrected for latitude and temperature. The corrections were applied as follows:
+\begin{itemize}
+    \item \textbf{Latitude Correction:} Corrections were interpolated from the Gravity Correction Table for San Diego’s latitude (32.7°N).
+    \item \textbf{Temperature Correction:} Corrections were interpolated from the Temperature Correction Table based on the recorded temperature for each sample.
+\end{itemize}
+
+Statistical analysis was performed to calculate the sample mean ($\bar{x}$), standard deviation ($S_x$), and standard deviation of the mean ($S_{\bar{x}}$) for temperature, pressure, and air density.
+
+\section{Results}
+
+\subsection{Uncertainty for One-Time Sample}
+\begin{table}[H]
+    \centering
+    \caption{Measurement results and uncertainty for one-time sample}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        $T$ [$^\circ$F] & $P$ [inHg] Before Correction & $P$ [Pa] After Correction & $\rho$ [kg/m$^3$] \\
+        \hline
+        73.44 & 29.83 & 101030 & 1.19 \\ % Replace with actual data
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsection{Uncertainty for Ensemble Average}
+\begin{table}[H]
+    \centering
+    \caption{Measurement results and uncertainty for ensemble average}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        $T$ [$^\circ$F] & $P$ [inHg] Before Correction & $P$ [Pa] After Correction & $\rho$ [g/m$^3$] \\
+        \hline
+        73.44 & 29.83 & 101029 & 1190 \\ % Replace with actual data
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsection{Resolution of Measurement}
+\begin{table}[H]
+    \centering
+    \caption{Resolution of Measurement}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        $T$ [$^\circ$F] & $P$ [inHg] & $P$ [mmHg] & $\rho$ [g/m$^3$] \\
+        \hline
+        1.31 & 0.29 & 1.06 & 11.9 \\ % Replace with actual data
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsection{Convergence Test}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{convergence_plot_updated.png}
+    \caption{Convergence test results for mean, standard deviation, and standard deviation of the mean.}
+\end{figure}
+
+\section{Discussion}
+
+The equipment used in this experiment, specifically the barometer and thermometer, showed signs of instability, which may have impacted the accuracy of the measurements. Both instruments are relatively old and prone to wear and calibration drift. For instance, the barometer relies on mercury, which can expand and contract unevenly due to temperature variations, especially in aging devices. Similarly, the thermometer's responsiveness may have degraded over time, leading to inconsistencies in recorded values.
+
+These limitations underscore the importance of proper calibration and maintenance. Regular recalibration against more modern, precise instruments would reduce systematic errors and improve reliability. Despite these challenges, the statistical analysis methods applied, including uncertainty quantification and convergence testing, helped mitigate some of the inherent measurement variability.
+
+The convergence test results demonstrated that the mean and standard deviation stabilized with an increasing number of samples, indicating that the dataset is statistically robust despite equipment limitations. This suggests that while individual measurements may be less reliable, ensemble averages provide a reasonable approximation of true values.
+
+\section{Conclusion}
+
+This experiment gave us a hands-on look at measuring atmospheric pressure and temperature, adjusting for environmental factors, and analyzing uncertainties. Some key takeaways include:
+
+\begin{itemize}
+    \item Applying corrections for latitude and temperature is essential to improve measurement accuracy.
+    \item Statistical methods like mean, standard deviation, and uncertainty analysis help make sense of the data.
+    \item Older equipment introduces inconsistencies, reinforcing the need for regular calibration or updated tools.
+    \item Convergence tests showed that taking more samples leads to more reliable results.
+\end{itemize}
+
+In the end, while our instruments had their flaws, the data analysis techniques helped us extract meaningful and reliable results. Using more modern equipment in the future could further reduce uncertainties and improve accuracy.
+
+
+\section{Appendix}
+\appendix
+\section{Raw Data}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Lab1_Datasheet_Tuesday_Class.pdf}
+    \caption{Student Datasheet with recorded raw data. (Page 1 of 3)}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{LattitudeCorrectionForBarometerHeightReading.pdf}
+    \caption{Gravity Correction Table used for latitude adjustments.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{TemeperatureCorrectionForBarometerHeightReading.pdf}
+    \caption{Temperature Correction Table used for atmospheric pressure adjustments.}
+\end{figure}
+
+\section{MATLAB Code}
+\begin{lstlisting}[language=Matlab]
+%% AE 303 Lab 1
+% Author: Parham Khodadi
+
+clear; clc;
+
+%% Step 1: Load Student Data
+% Load the student data (Temperature and Barometric Pressure)
+student_data = readmatrix('Student_Data.csv'); % Columns: Temp_F, P_inHg, P_mmHg
+Temp_F = student_data(:,1); % Temperature in Fahrenheit
+P_inHg = student_data(:,2); % Atmospheric Pressure in inches of Hg
+P_mmHg = student_data(:,3); % Atmospheric Pressure in mmHg (for Table 3)
+
+%% Step 2: Load Correction Tables
+% Load the gravity correction table
+gravity_corr = readmatrix('Gravity_Correction.csv'); % Columns: Latitude, 20in-30in
+latitude = 32.7; % Latitude for San Diego
+gravity_values = gravity_corr(:,2:end); % Correction values for barometer readings
+barometer_readings = 20:30; % Barometric readings in inches of Hg
+
+% Load the temperature correction table
+temp_corr = readmatrix('Temperature_Correction.csv'); % Columns: Temp_F, 20in-31in
+temp_corr_values = temp_corr(:,2:end); % Correction values for barometer readings
+temp_corr_readings = 20:31; % Barometric readings in inches of Hg
+
+%% Step 3: Apply Latitude and Temperature Corrections
+% Latitude (Gravity) Correction
+[~, closest_lat] = min(abs(gravity_corr(:,1) - latitude)); % Closest latitude row
+gravity_factors = gravity_values(closest_lat, :); % Correction factors for given latitude
+gravity_correction = interp1(barometer_readings, gravity_factors, P_inHg, 'linear', 'extrap');
+
+% Apply Gravity Correction
+P_corrected_inHg = P_inHg + gravity_correction;
+
+% Temperature Correction
+temp_correction = zeros(size(Temp_F));
+for i = 1:length(Temp_F)
+    % Find the closest temperature row
+    [~, closest_temp] = min(abs(temp_corr(:,1) - Temp_F(i)));
+    temp_correction(i) = interp1(temp_corr_readings, temp_corr_values(closest_temp, :), P_inHg(i), 'linear', 'extrap');
+end
+
+% Apply Temperature Correction
+P_corrected_inHg = P_corrected_inHg + temp_correction;
+
+% Convert to Pascals (Pa)
+P_corrected_Pa = P_corrected_inHg * 3386.39;
+
+%% Step 4: Convert Temperature to Kelvin
+Temp_C = (Temp_F - 32) * 5/9; % Convert Fahrenheit to Celsius
+T_kelvin = Temp_C + 273.15; % Convert Celsius to Kelvin
+
+%% Step 5: Compute Air Density using Ideal Gas Law: \rho = P / (R * T)
+R_air = 287.058; % Gas constant for air (J/kg/K)
+
+% Compute air density (rho_air) using corrected pressure and temperature
+rho_air = P_corrected_Pa ./ (R_air * T_kelvin);
+
+%% Step 6: Compute Statistical Metrics
+N = length(Temp_F); % Number of samples
+mean_T = mean(Temp_F);
+std_T = std(Temp_F);
+std_T_mean = std_T / sqrt(N);
+
+mean_P = mean(P_corrected_Pa);
+std_P = std(P_corrected_Pa);
+std_P_mean = std_P / sqrt(N);
+
+mean_rho = mean(rho_air);
+std_rho = std(rho_air);
+std_rho_mean = std_rho / sqrt(N);
+
+%% Step 7: Generate Tables for LaTeX
+% Table 1: One-Time Sample Uncertainty
+header1 = {'T (F)', 'P (inHg)', 'P (Pa)', 'Density (kg/m^3)'};
+table1 = [mean_T, mean_P / 3386.39, mean_P, mean_rho];
+writecell([header1; num2cell(table1)], 'Table1_OneTimeSample.csv');
+
+% Table 2: Ensemble Average Uncertainty
+header2 = {'T (F)', 'P (inHg)', 'P (Pa)', 'Density (kg/m^3)'};
+table2 = [mean_T, mean_P / 3386.39, mean_P, mean_rho];
+writecell([header2; num2cell(table2)], 'Table2_EnsembleAverage.csv');
+
+% Table 3: Measurement Resolutions
+header3 = {'T Resolution (F)', 'P Resolution (inHg)', 'P Resolution (mmHg)', 'Density Resolution (kg/m^3)'};
+resolution_table = [std_T, std(P_inHg), std(P_mmHg), std(rho_air)];
+writecell([header3; num2cell(resolution_table)], 'Table3_Resolution.csv');
+
+%% Step 8: Plot Convergence Test
+figure;
+subplot(3,1,1);
+plot(1:N, cumsum(P_corrected_Pa) ./ (1:N)', 'b', 'LineWidth', 1.5);
+xlabel('Sample Size');
+ylabel('Running Mean (Pa)');
+title('Convergence Test - Mean');
+
+subplot(3,1,2);
+plot(1:N, sqrt(cumsum((P_corrected_Pa - mean_P).^2) ./ (1:N)'), 'r', 'LineWidth', 1.5);
+xlabel('Sample Size');
+ylabel('Running Std Dev (Pa)');
+title('Convergence Test - Std Dev');
+
+subplot(3,1,3);
+plot(1:N, sqrt(cumsum((P_corrected_Pa - mean_P).^2) ./ (1:N)') ./ sqrt(1:N)', 'g', 'LineWidth', 1.5);
+xlabel('Sample Size');
+ylabel('Running Std Dev of Mean (Pa)');
+title('Convergence Test - Std Dev of Mean');
+saveas(gcf, 'convergence_plot_updated.png');
+
+\end{lstlisting}
+
+
+\end{document}
